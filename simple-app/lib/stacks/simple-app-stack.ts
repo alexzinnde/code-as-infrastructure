@@ -22,7 +22,7 @@ export class SimpleAppStack extends cdk.Stack {
 
     const getPhotos = new Lambda.NodejsFunction(this, 'get-photos-lambda', {
       runtime: Runtime.NODEJS_14_X,
-      entry: path.join(__dirname, '..', 'api', 'get-photos', 'index.ts'),
+      entry: path.join(__dirname, '..', '..', 'api', 'get-photos', 'index.ts'),
       handler: 'getPhotos',
       environment: {
         PHOTO_BUCKET_NAME: bucket.bucketName
