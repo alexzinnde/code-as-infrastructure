@@ -1,6 +1,6 @@
 import { expect as expectCDK, matchTemplate, MatchStyle } from '@aws-cdk/assert'
 import * as cdk from '@aws-cdk/core'
-import * as SimpleApp from '../lib/simple-app-stack'
+import * as SimpleApp from '../lib/stacks/simple-app-stack'
 import '@aws-cdk/assert/jest'
 
 test('Simple App Stack', () => {
