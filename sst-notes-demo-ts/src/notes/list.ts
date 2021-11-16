@@ -1,8 +1,9 @@
 import handler from '../util/handler'
 import dynamoDb from '../util/dynamodb'
 import { QueryInput, QueryOutput, ItemList } from 'aws-sdk/clients/dynamodb'
+import { APIGatewayEvent } from 'aws-lambda'
 
-export const main = handler(async (): Promise<ItemList | undefined> => {
+export const main = handler(async (event: APIGatewayEvent): Promise<ItemList | undefined> => {
   const params = {
     TableName: process.env.TABLE_NAME,
     // 'KeyConditionExpression' defines the condition for the query
@@ -12,7 +13,8 @@ export const main = handler(async (): Promise<ItemList | undefined> => {
     // 'ExpressionAttributeValues' defines the value in the condition
     // - ':userId': defines 'userId' to be the id of the author
     ExpressionAttributeValues: {
-      ':userId': '123'
+      ':userId': event.requestContext.authorizer?.iam?.cognitoIdentity.identityId
+      // ':userId': '123'
     }
   } as QueryInput
 

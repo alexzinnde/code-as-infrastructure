@@ -1,4 +1,5 @@
 import * as sst from '@serverless-stack/resources'
+import { ApiAuthorizationType } from '@serverless-stack/resources'
 
 export interface ApiStackProps extends sst.StackProps {
   table: sst.Table
@@ -13,17 +14,18 @@ export default class ApiStack extends sst.Stack {
     const { table } = props
     this.api = new sst.Api(this, 'notes-api', {
       // these props will apply to all routes
+      defaultAuthorizationType: ApiAuthorizationType.AWS_IAM,
       defaultFunctionProps: {
         environment: {
           TABLE_NAME: table.tableName
         }
       },
       routes: {
-        'POST  /notes': 'src/create.main',
+        'POST  /notes': 'src/notes/create.main',
         'GET   /notes/{id}': 'src/notes/get.main',
         'GET   /notes': 'src/notes/list.main',
         'PUT   /notes/{id}': 'src/notes/update.main',
-        'DELETE /notes/{id}': 'src/delete.main'
+        'DELETE /notes/{id}': 'src/notes/delete.main'
       }
     })
 
