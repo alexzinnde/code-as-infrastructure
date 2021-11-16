@@ -4,9 +4,12 @@ import { APIGatewayProxyEventV2 } from 'aws-lambda'
 import { GetItemInput, GetItemOutput } from 'aws-sdk/clients/dynamodb'
 
 export const main = handler(async (event: APIGatewayProxyEventV2): Promise<GetItemOutput | Error> => {
+  console.log('in get.main')
+  // console.log(JSON.stringify(event, null, 2))
   if (!event.pathParameters) {
     throw new Error('event.pathParameters missing!')
   }
+
   
   const params = {
     TableName: process.env.TABLE_NAME,
