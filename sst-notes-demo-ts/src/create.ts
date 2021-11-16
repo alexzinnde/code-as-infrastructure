@@ -5,7 +5,7 @@ import { APIGatewayProxyEventV2, APIGatewayProxyResultV2 } from 'aws-lambda';
 
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 
-export async function main(event: APIGatewayProxyEventV2): Promise<APIGatewayProxyResultV2> {
+export const main = async (event: APIGatewayProxyEventV2): Promise<APIGatewayProxyResultV2> => {
   if (!event.body)
     return {
       statusCode: 400,
@@ -39,4 +39,4 @@ export async function main(event: APIGatewayProxyEventV2): Promise<APIGatewayPro
       body: JSON.stringify({ error: e.message })
     } as APIGatewayProxyResultV2;
   }
-}
+};
