@@ -1,5 +1,5 @@
 import handler from '../util/handler'
-import dynamoDb from '../lib/dynamodb'
+import dynamoDb from '../util/dynamodb'
 import { APIGatewayProxyEventV2 } from 'aws-lambda'
 import { GetItemInput, GetItemOutput } from 'aws-sdk/clients/dynamodb'
 
