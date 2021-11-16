@@ -1,5 +1,5 @@
 {
-  "name": "sst-notes-demo-ts",
-  "region": "us-east-1",
+  "name": "az-sst-notes-demo-ts",
+  "region": "us-west-2",
   "main": "stacks/index.ts"
 }
